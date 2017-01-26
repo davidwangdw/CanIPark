@@ -12,6 +12,10 @@ class ParkingInfo{
     
     lazy var streetCode = String()
     lazy var parkingInfoSignArray = [ParkingInfoSign]()
+    lazy var latitudeStart = Double()
+    lazy var latitudeEnd = Double()
+    lazy var longitudeStart = Double()
+    lazy var longitudeEnd = Double()
     
     init() {
         
