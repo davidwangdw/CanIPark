@@ -28,12 +28,6 @@ for key in d:
     latitudeEnd = d[key][0][2][1]
     longitudeStart = d[key][0][2][0]
     longitudeEnd = d[key][0][2][0]
-    
-    # print latitudeStart
-    # print latitudeEnd
-    # print longitudeStart
-    # print longitudeEnd
-
 
     for sublist in d[key]:
         if sublist[2][1] < latitudeStart:
