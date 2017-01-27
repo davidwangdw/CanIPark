@@ -24,10 +24,16 @@ for feature in data['features']:
 
 for key in d:
     
-    latitudeStart = d[key][2][1]
-    latitudeEnd = d[key][2][1]
-    longitudeStart = d[key][2][0]
-    longitudeEnd = d[key][2][0]
+    latitudeStart = d[key][0][2][1]
+    latitudeEnd = d[key][0][2][1]
+    longitudeStart = d[key][0][2][0]
+    longitudeEnd = d[key][0][2][0]
+    
+    # print latitudeStart
+    # print latitudeEnd
+    # print longitudeStart
+    # print longitudeEnd
+
 
     for sublist in d[key]:
         if sublist[2][1] < latitudeStart:
@@ -35,9 +41,8 @@ for key in d:
             longitudeStart = sublist[2][0]
         if sublist[2][1] > latitudeEnd:
             latitudeEnd = sublist[2][1]
-            latitudeEnd = sublist[2][0]
+            longitudeEnd = sublist[2][0]
 
-    #need to fix this
     d[key].append([[latitudeStart, longitudeStart], [latitudeEnd, longitudeEnd]])
 
 with open('JSONData.json', 'w') as f:
