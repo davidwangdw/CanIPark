@@ -19,7 +19,7 @@
 		21435CF51E33EBA000768B94 /* CustomInfoWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21435CF41E33EBA000768B94 /* CustomInfoWindow.swift */; };
 		21435CF71E354DEC00768B94 /* parkingData.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 21435CF61E354DEC00768B94 /* parkingData.geojson */; };
 		21435CFA1E3553AF00768B94 /* ParkingInfoParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21435CF91E3553AF00768B94 /* ParkingInfoParser.swift */; };
-		21435CFC1E3599AB00768B94 /* JSONData.json in Resources */ = {isa = PBXBuildFile; fileRef = 21435CFB1E3599AB00768B94 /* JSONData.json */; };
+		21C893561E3AF8A2001058B1 /* JSONData.json in Resources */ = {isa = PBXBuildFile; fileRef = 21C893551E3AF8A2001058B1 /* JSONData.json */; };
 		9070F769AB63B8B26B7F7890 /* libPods-CanIPark.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DE712DB357D8C384EF1AB16 /* libPods-CanIPark.a */; };
 /* End PBXBuildFile section */
 
@@ -38,7 +38,7 @@
 		21435CF41E33EBA000768B94 /* CustomInfoWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomInfoWindow.swift; sourceTree = "<group>"; };
 		21435CF61E354DEC00768B94 /* parkingData.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = parkingData.geojson; sourceTree = "<group>"; };
 		21435CF91E3553AF00768B94 /* ParkingInfoParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkingInfoParser.swift; sourceTree = "<group>"; };
-		21435CFB1E3599AB00768B94 /* JSONData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = JSONData.json; sourceTree = "<group>"; };
+		21C893551E3AF8A2001058B1 /* JSONData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = JSONData.json; sourceTree = "<group>"; };
 		46ABE304E6F6CC01D17DD82D /* Pods-CanIPark.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CanIPark.release.xcconfig"; path = "Pods/Target Support Files/Pods-CanIPark/Pods-CanIPark.release.xcconfig"; sourceTree = "<group>"; };
 		6DE712DB357D8C384EF1AB16 /* libPods-CanIPark.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CanIPark.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F077DE67BE9A1435BA5BCDA0 /* Pods-CanIPark.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CanIPark.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CanIPark/Pods-CanIPark.debug.xcconfig"; sourceTree = "<group>"; };
@@ -79,8 +79,8 @@
 			children = (
 				21435CF61E354DEC00768B94 /* parkingData.geojson */,
 				21435CD91E2F097000768B94 /* AppDelegate.swift */,
+				21C893551E3AF8A2001058B1 /* JSONData.json */,
 				21435CE31E2F097000768B94 /* Assets.xcassets */,
-				21435CFB1E3599AB00768B94 /* JSONData.json */,
 				21435CE01E2F097000768B94 /* CanIPark.xcdatamodeld */,
 				21435CF41E33EBA000768B94 /* CustomInfoWindow.swift */,
 				21435CF21E33EAAA00768B94 /* CustomInfoWindow.xib */,
@@ -176,7 +176,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				21435CF31E33EAAA00768B94 /* CustomInfoWindow.xib in Resources */,
-				21435CFC1E3599AB00768B94 /* JSONData.json in Resources */,
+				21C893561E3AF8A2001058B1 /* JSONData.json in Resources */,
 				21435CE71E2F097000768B94 /* LaunchScreen.storyboard in Resources */,
 				21435CE41E2F097000768B94 /* Assets.xcassets in Resources */,
 				21435CDF1E2F097000768B94 /* Main.storyboard in Resources */,

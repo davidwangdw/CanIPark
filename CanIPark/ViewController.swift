@@ -60,33 +60,50 @@ class ViewController: UIViewController, GMSMapViewDelegate {
 
                             //print("marker mapped")
                             let streetArray = value as! NSArray
-                            //let streetSignArray = streetArray[0] as! NSArray
-                            //let coordinateArray = streetSignArray[2] as! NSArray
+                            
+                            //duplicate code - fix later
+                            let streetSignArray = streetArray[0] as! NSArray
+                            let coordinateStartEndArray = streetArray[streetArray.count - 1] as! NSArray
+                            let coordinateStart = coordinateStartEndArray[0] as! NSArray
+                            let coordinateEnd = coordinateStartEndArray[1] as! NSArray
                             
                             //loop through streetArray to add all street signs
                             
-                            let newParkingInfoObj = ParkingInfo(newStreetCode: key as! String)
+                            //let newParkingInfoObj = ParkingInfo(newStreetCode: key as! String)
                             
+                            let newParkingInfoObj = ParkingInfo(newStreetCode: key as! String, newLatitudeStart: coordinateStart[0] as! Double, newLatitudeEnd: coordinateEnd[0] as! Double, newLongitudeStart: coordinateStart[1] as! Double, newLongitudeEnd: coordinateEnd[1] as! Double)
+                            print("parkinginfo object initialized")
                             
+                            //temp fix until we can get something else
+                            var loop = 0
                             
                             for streetSign in streetArray {
                                 
                                 let streetSignArray = streetSign as! NSArray
+
+                                loop += 1
                                 
-                                let coordinateArray = streetSignArray[2] as! NSArray
-                                
-                                let newParkingSign = ParkingInfoSign(newLatitude: coordinateArray[1] as! Double, newLongitude: coordinateArray[0] as! Double, newStreetCode: key as! String, newSignDescription: streetSignArray[1] as! String)
-                                
-                                newParkingInfoObj.addSignInfo(signInfo: newParkingSign)
-                                
-                                position = CLLocationCoordinate2D(latitude: coordinateArray[1] as! Double, longitude: coordinateArray[0] as! Double)
-                                
-                                let marker = GMSMarker(position: position)
-                                //marker.userData = newParkingInfoObj
-                                marker.userData = newParkingSign
-                                marker.map = mapView
+                                if loop != streetArray.count {
+                                    
+                                    let coordinateArray = streetSignArray[2] as! NSArray
+                                    
+                                    let newParkingSign = ParkingInfoSign(newLatitude: coordinateArray[1] as! Double, newLongitude: coordinateArray[0] as! Double, newStreetCode: key as! String, newSignDescription: streetSignArray[1] as! String)
+                                    
+                                    newParkingInfoObj.addSignInfo(signInfo: newParkingSign)
+                                    
+                                    position = CLLocationCoordinate2D(latitude: coordinateArray[1] as! Double, longitude: coordinateArray[0] as! Double)
+                                    
+                                    let marker = GMSMarker(position: position)
+                                    //marker.userData = newParkingInfoObj
+                                    marker.userData = newParkingSign
+                                    marker.map = mapView
+                                    
+                                }
                                 
                             }
+                            
+                            //print(streetArray)
+                            
                         }
                     }
                     

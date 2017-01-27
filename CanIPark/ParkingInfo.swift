@@ -25,6 +25,14 @@ class ParkingInfo{
         streetCode = newStreetCode
     }
     
+    init(newStreetCode: String, newLatitudeStart: Double, newLatitudeEnd: Double, newLongitudeStart: Double, newLongitudeEnd: Double) {
+        streetCode = newStreetCode
+        latitudeStart = newLatitudeStart
+        latitudeEnd = newLatitudeEnd
+        longitudeStart = newLongitudeStart
+        longitudeEnd = newLongitudeEnd
+    }
+    
     func addSignInfo(signInfo: ParkingInfoSign) {
         parkingInfoSignArray.append(signInfo)
     }
