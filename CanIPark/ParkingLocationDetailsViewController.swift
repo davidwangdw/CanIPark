@@ -10,21 +10,23 @@ import UIKit
 
 class ParkingLocationDetailsViewController: UIViewController, UITableViewDelegate {
     
+    @IBOutlet weak var parkingDetailLabel: UITextView!
     var parkingInfoObject = ParkingInfo()
+    //temp variable for now
+    var parkingSignInfoObject = ParkingInfoSign()
     
-    @IBOutlet weak var parkingTrueFalseLabel: UILabel!
+    @IBOutlet weak var parkingTrueFalseLabel: UITextView!
     
     @IBAction func doneButton(_ sender: Any) {
         
         dismiss(animated: true, completion: nil)
     }
-    
-    @IBOutlet weak var parkingDetailLabel: UILabel!
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        parkingDetailLabel.text = parkingSignInfoObject.returnSignDescription()
         //parkingTrueFalseLabel.text = ""
         //parkingTrueFalseLabel.text = parkingInfoObject.
 

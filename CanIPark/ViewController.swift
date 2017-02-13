@@ -16,6 +16,8 @@ class ViewController: UIViewController, GMSMapViewDelegate {
     var currentLocation: CLLocation?
     var mapView: GMSMapView!
     var zoomLevel: Float = 15.0
+    
+    @IBOutlet weak var controllerView: UIView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +36,7 @@ class ViewController: UIViewController, GMSMapViewDelegate {
         mapView.settings.myLocationButton = true
         mapView.delegate = self
         view = mapView
+        //controllerView = mapView
         
         //let zoomLevel = mapView.camera.zoom
         //print(zoomLevel)
@@ -95,6 +98,7 @@ class ViewController: UIViewController, GMSMapViewDelegate {
                                     
                                     let marker = GMSMarker(position: position)
                                     //marker.userData = newParkingInfoObj
+                                    marker.icon = UIImage(named: "MapMarker")
                                     marker.userData = newParkingSign
                                     marker.map = mapView
                                     
@@ -159,20 +163,26 @@ class ViewController: UIViewController, GMSMapViewDelegate {
         //print("Line has been tapped")
     }
     
+    //FIX THIS
     func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
         //let storeMarker = marker as StoreMarker
         //performSegueWithIdentifier("productMenu", sender: storeMarker.store)
-        let parkingInfoFromMarker = marker.userData as? ParkingInfo
+        let parkingInfoFromMarker = marker.userData as! ParkingInfoSign
+        //let parkingInfoFromMarker = marker.userData as? ParkingInfoSign
         performSegue(withIdentifier: "presentParkingInfo", sender: parkingInfoFromMarker)
         
     }
     
     //fix segue functions later
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("in prepare for segue")
         if segue.identifier == "presentParkingInfo" {
             let controller = segue.destination as! ParkingLocationDetailsViewController
-            let parkingInfoFromMarker = sender as! ParkingInfo
-            controller.parkingInfoObject = parkingInfoFromMarker
+            print("first line ran")
+            let parkingInfoFromMarker = sender as! ParkingInfoSign
+            print("second lines ran")
+            controller.parkingSignInfoObject = parkingInfoFromMarker
+            print("third line ran")
         }
     }
     
