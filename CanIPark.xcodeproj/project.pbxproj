@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		21435CDA1E2F097000768B94 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21435CD91E2F097000768B94 /* AppDelegate.swift */; };
 		21435CDC1E2F097000768B94 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21435CDB1E2F097000768B94 /* ViewController.swift */; };
-		21435CDF1E2F097000768B94 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21435CDD1E2F097000768B94 /* Main.storyboard */; };
 		21435CE21E2F097000768B94 /* CanIPark.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 21435CE01E2F097000768B94 /* CanIPark.xcdatamodeld */; };
 		21435CE41E2F097000768B94 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21435CE31E2F097000768B94 /* Assets.xcassets */; };
 		21435CE71E2F097000768B94 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21435CE51E2F097000768B94 /* LaunchScreen.storyboard */; };
@@ -19,6 +18,8 @@
 		21435CF51E33EBA000768B94 /* CustomInfoWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21435CF41E33EBA000768B94 /* CustomInfoWindow.swift */; };
 		21435CF71E354DEC00768B94 /* parkingData.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 21435CF61E354DEC00768B94 /* parkingData.geojson */; };
 		21435CFA1E3553AF00768B94 /* ParkingInfoParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21435CF91E3553AF00768B94 /* ParkingInfoParser.swift */; };
+		216F235F1E552C32007CD1B5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 216F235D1E552C32007CD1B5 /* Main.storyboard */; };
+		216F23D51E5907AC007CD1B5 /* SavedLocationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216F23D41E5907AC007CD1B5 /* SavedLocationsViewController.swift */; };
 		21C893561E3AF8A2001058B1 /* JSONData.json in Resources */ = {isa = PBXBuildFile; fileRef = 21C893551E3AF8A2001058B1 /* JSONData.json */; };
 		9070F769AB63B8B26B7F7890 /* libPods-CanIPark.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DE712DB357D8C384EF1AB16 /* libPods-CanIPark.a */; };
 /* End PBXBuildFile section */
@@ -27,7 +28,6 @@
 		21435CD61E2F097000768B94 /* CanIPark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CanIPark.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		21435CD91E2F097000768B94 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		21435CDB1E2F097000768B94 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		21435CDE1E2F097000768B94 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		21435CE11E2F097000768B94 /* CanIPark.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CanIPark.xcdatamodel; sourceTree = "<group>"; };
 		21435CE31E2F097000768B94 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		21435CE61E2F097000768B94 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -38,6 +38,8 @@
 		21435CF41E33EBA000768B94 /* CustomInfoWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomInfoWindow.swift; sourceTree = "<group>"; };
 		21435CF61E354DEC00768B94 /* parkingData.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = parkingData.geojson; sourceTree = "<group>"; };
 		21435CF91E3553AF00768B94 /* ParkingInfoParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkingInfoParser.swift; sourceTree = "<group>"; };
+		216F235E1E552C32007CD1B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		216F23D41E5907AC007CD1B5 /* SavedLocationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedLocationsViewController.swift; sourceTree = "<group>"; };
 		21C893551E3AF8A2001058B1 /* JSONData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = JSONData.json; sourceTree = "<group>"; };
 		46ABE304E6F6CC01D17DD82D /* Pods-CanIPark.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CanIPark.release.xcconfig"; path = "Pods/Target Support Files/Pods-CanIPark/Pods-CanIPark.release.xcconfig"; sourceTree = "<group>"; };
 		6DE712DB357D8C384EF1AB16 /* libPods-CanIPark.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CanIPark.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,12 +87,13 @@
 				21435CF41E33EBA000768B94 /* CustomInfoWindow.swift */,
 				21435CF21E33EAAA00768B94 /* CustomInfoWindow.xib */,
 				21435CE81E2F097000768B94 /* Info.plist */,
+				216F235D1E552C32007CD1B5 /* Main.storyboard */,
 				21435CE51E2F097000768B94 /* LaunchScreen.storyboard */,
-				21435CDD1E2F097000768B94 /* Main.storyboard */,
 				21435CF91E3553AF00768B94 /* ParkingInfoParser.swift */,
 				21435CEE1E31C85B00768B94 /* ParkingInfo.swift */,
 				21435CF01E31CA5A00768B94 /* ParkingLocationDetailsViewController.swift */,
 				21435CDB1E2F097000768B94 /* ViewController.swift */,
+				216F23D41E5907AC007CD1B5 /* SavedLocationsViewController.swift */,
 			);
 			path = CanIPark;
 			sourceTree = "<group>";
@@ -178,8 +181,8 @@
 				21435CF31E33EAAA00768B94 /* CustomInfoWindow.xib in Resources */,
 				21C893561E3AF8A2001058B1 /* JSONData.json in Resources */,
 				21435CE71E2F097000768B94 /* LaunchScreen.storyboard in Resources */,
+				216F235F1E552C32007CD1B5 /* Main.storyboard in Resources */,
 				21435CE41E2F097000768B94 /* Assets.xcassets in Resources */,
-				21435CDF1E2F097000768B94 /* Main.storyboard in Resources */,
 				21435CF71E354DEC00768B94 /* parkingData.geojson in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -246,26 +249,27 @@
 				21435CFA1E3553AF00768B94 /* ParkingInfoParser.swift in Sources */,
 				21435CF51E33EBA000768B94 /* CustomInfoWindow.swift in Sources */,
 				21435CE21E2F097000768B94 /* CanIPark.xcdatamodeld in Sources */,
+				216F23D51E5907AC007CD1B5 /* SavedLocationsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		21435CDD1E2F097000768B94 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				21435CDE1E2F097000768B94 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		21435CE51E2F097000768B94 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				21435CE61E2F097000768B94 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		216F235D1E552C32007CD1B5 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				216F235E1E552C32007CD1B5 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

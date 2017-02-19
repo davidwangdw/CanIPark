@@ -18,9 +18,18 @@ class ViewController: UIViewController, GMSMapViewDelegate {
     var zoomLevel: Float = 15.0
     
     @IBOutlet weak var controllerView: UIView!
+    
+    //NSUserDefaults for saved locations, we won't have much info so it should be okay
+    var savedLocationsArray = [ParkingInfo]()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //let defaults = UserDefaults.standard
+        
+        UserDefaults.standard.setValue(savedLocationsArray, forKey: "savedLocations")
+        
         
         // for getting current location
         locationManager = CLLocationManager()
@@ -29,6 +38,8 @@ class ViewController: UIViewController, GMSMapViewDelegate {
         locationManager.distanceFilter = 50
         locationManager.startUpdatingLocation()
         locationManager.delegate = self
+        
+        //comment out if internet is not working
         
         let camera = GMSCameraPosition.camera(withLatitude: 40.78, longitude: -73.95, zoom: 15.0)
         mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
@@ -75,7 +86,7 @@ class ViewController: UIViewController, GMSMapViewDelegate {
                             //let newParkingInfoObj = ParkingInfo(newStreetCode: key as! String)
                             
                             let newParkingInfoObj = ParkingInfo(newStreetCode: key as! String, newLatitudeStart: coordinateStart[0] as! Double, newLatitudeEnd: coordinateEnd[0] as! Double, newLongitudeStart: coordinateStart[1] as! Double, newLongitudeEnd: coordinateEnd[1] as! Double)
-                            print("parkinginfo object initialized")
+                            //print("parkinginfo object initialized")
                             
                             //temp fix until we can get something else
                             var loop = 0
@@ -106,7 +117,16 @@ class ViewController: UIViewController, GMSMapViewDelegate {
                                 
                             }
                             
-                            //print(streetArray)
+                            let streetArrayLength: Int = streetArray.count - 1
+                            //print(streetArrayLength)
+                            print(streetArray[streetArrayLength])
+                            
+                            let streetCoordinateArray = streetArray[streetArrayLength] as! NSArray
+                            
+                            print(streetCoordinateArray[0])
+                            
+                            //test out drawing out a line
+                            //let path = GMSMutablePath()
                             
                         }
                     }
@@ -175,14 +195,14 @@ class ViewController: UIViewController, GMSMapViewDelegate {
     
     //fix segue functions later
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("in prepare for segue")
+        //print("in prepare for segue")
         if segue.identifier == "presentParkingInfo" {
             let controller = segue.destination as! ParkingLocationDetailsViewController
-            print("first line ran")
+            //print("first line ran")
             let parkingInfoFromMarker = sender as! ParkingInfoSign
-            print("second lines ran")
+            //print("second lines ran")
             controller.parkingSignInfoObject = parkingInfoFromMarker
-            print("third line ran")
+            //print("third line ran")
         }
     }
     
@@ -204,7 +224,7 @@ extension ViewController: CLLocationManagerDelegate {
     // Handle incoming location events.
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location: CLLocation = locations.last!
-        print("Location: \(location)")
+        //print("Location: \(location)")
         
         let camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude,
                                               longitude: location.coordinate.longitude,

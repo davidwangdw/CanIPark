@@ -15,7 +15,8 @@ class ParkingLocationDetailsViewController: UIViewController, UITableViewDelegat
     //temp variable for now
     var parkingSignInfoObject = ParkingInfoSign()
     
-    @IBOutlet weak var parkingTrueFalseLabel: UITextView!
+    //@IBOutlet weak var parkingTrueFalseLabel: UITextView!
+    @IBOutlet weak var parkingStreetCodeLabel: UILabel!
     
     @IBAction func doneButton(_ sender: Any) {
         
@@ -27,12 +28,19 @@ class ParkingLocationDetailsViewController: UIViewController, UITableViewDelegat
         super.viewDidLoad()
         
         parkingDetailLabel.text = parkingSignInfoObject.returnSignDescription()
+        parkingStreetCodeLabel.text = parkingSignInfoObject.streetCode
         //parkingTrueFalseLabel.text = ""
         //parkingTrueFalseLabel.text = parkingInfoObject.
 
-
     }
 
+    @IBAction func saveParkingLocationButton(_ sender: Any) {
+    
+        var newArray = UserDefaults.standard.array(forKey: "savedLocations")!
+        newArray.append(parkingSignInfoObject)
+        UserDefaults.standard.setValue(newArray, forKey: "savedLocations")
+        
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
