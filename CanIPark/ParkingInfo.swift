@@ -50,6 +50,9 @@ class ParkingInfo{
 
 class ParkingInfoSign{
     
+    //for the saved locations feature
+    lazy var signNickname = String()
+    
     lazy var latitude = Double()
     lazy var longitude = Double()
     

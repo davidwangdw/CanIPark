@@ -24,6 +24,10 @@ class SavedLocationsViewController: UIViewController, UITableViewDelegate, UITab
         locationTable.dataSource = self
 
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        locationTable.reloadData()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -42,11 +46,22 @@ class SavedLocationsViewController: UIViewController, UITableViewDelegate, UITab
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LocationCell", for: indexPath) as! LocationCell
         
-        /*let newArray = UserDefaults.standard.array(forKey: "savedLocations")
-        let newParkingSignObject = newArray[indexPath]
-        cell.signIDLabel.text = String(newParkingSignObject*/
+        let newArray = UserDefaults.standard.array(forKey: "savedLocations")
+        //let newParkingSignObject = newArray[indexPath.row]
+        cell.signIDLabel.text = newArray?[indexPath.row] as! String?
         return cell
         
+    }
+
+    func tableView(_ tableView: UITableView,
+                            commit editingStyle: UITableViewCellEditingStyle,
+                            forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            var newArray = UserDefaults.standard.array(forKey: "savedLocations")!
+            newArray.remove(at: indexPath.row)
+            UserDefaults.standard.setValue(newArray, forKey: "savedLocations")
+            locationTable.reloadData()
+        }
     }
 
 

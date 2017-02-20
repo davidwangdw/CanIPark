@@ -20,7 +20,12 @@ class ViewController: UIViewController, GMSMapViewDelegate {
     @IBOutlet weak var controllerView: UIView!
     
     //NSUserDefaults for saved locations, we won't have much info so it should be okay
-    var savedLocationsArray = [ParkingInfo]()
+    //var savedLocationsArray = [ParkingInfo]()
+    var savedLocationsArray = [String]()
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
     
 
     override func viewDidLoad() {
@@ -30,7 +35,6 @@ class ViewController: UIViewController, GMSMapViewDelegate {
         
         UserDefaults.standard.setValue(savedLocationsArray, forKey: "savedLocations")
         
-        
         // for getting current location
         locationManager = CLLocationManager()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -39,27 +43,19 @@ class ViewController: UIViewController, GMSMapViewDelegate {
         locationManager.startUpdatingLocation()
         locationManager.delegate = self
         
-        //comment out if internet is not working
-        
         let camera = GMSCameraPosition.camera(withLatitude: 40.78, longitude: -73.95, zoom: 15.0)
         mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
         mapView.isMyLocationEnabled = true
         mapView.settings.myLocationButton = true
+        mapView.settings.compassButton = true
+        let mapInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 50.0, right: 0.0)
+        mapView.padding = mapInsets
         mapView.delegate = self
         view = mapView
-        //controllerView = mapView
         
         //let zoomLevel = mapView.camera.zoom
         //print(zoomLevel)
-        
-        //parse through data.geojson
-        /*let geoJSONDictionary: [String: AnyObject] = Bundle.main.pathForResource("parkingData", ofType: "geojson")!*/
-        
-        //load parkingdata as a json file
-        
-        //let parkingData = Bundle.main.path(forResource: "parkingData", ofType: "geojson")
-        
-        //if let path = Bundle.main.path(forResource: "parkingData", ofType: "geojson")
+
         if let path = Bundle.main.path(forResource: "JSONData", ofType: "json")
         {
             if let jsonData = NSData(contentsOfFile:path)
@@ -153,9 +149,7 @@ class ViewController: UIViewController, GMSMapViewDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    //func
-    
+
     
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
         //print("You tapped at \(coordinate.latitude), \(coordinate.longitude)")
