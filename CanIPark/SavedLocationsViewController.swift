@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import CoreData
 
 class LocationCell: UITableViewCell {
     @IBOutlet weak var coordinateLabel: UILabel!
     @IBOutlet weak var signIDLabel: UILabel!
+    @IBOutlet weak var userDescriptionLabel: UILabel!
+    @IBOutlet weak var streetNameLabel: UILabel!
 }
 
 class SavedLocationsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -25,8 +28,14 @@ class SavedLocationsViewController: UIViewController, UITableViewDelegate, UITab
 
     }
     
+    func getContext() -> NSManagedObjectContext {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        return appDelegate.persistentContainer.viewContext
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         locationTable.reloadData()
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,32 +46,93 @@ class SavedLocationsViewController: UIViewController, UITableViewDelegate, UITab
         return 1
     }
     
+    //core data
+    
+    
+    let fetchRequest: NSFetchRequest<Location> = Location.fetchRequest()
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let newArray = UserDefaults.standard.array(forKey: "savedLocations")!
-        return newArray.count
+        /*let newArray = UserDefaults.standard.array(forKey: "savedLocations")!
+        return newArray.count*/
+        do {
+            let results = try getContext().fetch(fetchRequest)
+            
+            return results.count
+
+        } catch {
+            print("there was an error \(error)")
+            
+            return 0
+        }
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LocationCell", for: indexPath) as! LocationCell
         
-        let newArray = UserDefaults.standard.array(forKey: "savedLocations")
+        //consolidate code later like this
+        /*let location = fetchedResultsController.object(at: indexPath)
+        cell.configure(for: location)*/
+        
+        do {
+            let results = try getContext().fetch(fetchRequest)
+            
+            //let location = fetchRequest.object(at: indexPath)
+            
+            let latitude = results[indexPath.row].value(forKey: "latitude") as! Double
+            let longitude = results[indexPath.row].value(forKey: "longitude") as! Double
+            
+            let latitudeString = String(format: "%.5f", latitude)
+            let longitudeString = String(format: "%.5f", longitude)
+            let coordinates = latitudeString + "," + longitudeString
+            cell.coordinateLabel.text = coordinates
+            cell.userDescriptionLabel.text = String(describing: results[indexPath.row].value(forKey: "userDescription")!)
+            cell.streetNameLabel.text = ""
+            cell.signIDLabel.text = String(describing: results[indexPath.row].value(forKey: "signDescription")!)
+            
+            return cell
+            
+            /*for loc in results as [NSManagedObject] {
+                print("\(loc.value(forKey: "userDescription"))")
+            }*/
+        } catch {
+            print("there was an error \(error)")
+            
+            cell.signIDLabel.text = "Sorry, there was an error"
+            
+            return cell
+        }
+        
+        /*let newArray = UserDefaults.standard.array(forKey: "savedLocations")
         //let newParkingSignObject = newArray[indexPath.row]
-        cell.signIDLabel.text = newArray?[indexPath.row] as! String?
-        return cell
+        let newObject = newArray?[indexPath.row] as! ParkingInfoSign?
+        cell.signIDLabel.text = newObject?.returnSignDescription()
+        return cell*/
         
     }
+    
+    //attempt at core data
+    //var managedObjectContext: NSManagedObjectContext!
+    //var managedContext: NSManagedObjectContext!
 
-    func tableView(_ tableView: UITableView,
+    /*func tableView(_ tableView: UITableView,
                             commit editingStyle: UITableViewCellEditingStyle,
                             forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            var newArray = UserDefaults.standard.array(forKey: "savedLocations")!
-            newArray.remove(at: indexPath.row)
-            UserDefaults.standard.setValue(newArray, forKey: "savedLocations")
-            locationTable.reloadData()
+            /*let context = getContext()
+            
+            do {
+                let results =  try getContext().fetch(fetchRequest)
+                let location = results[indexPath.row]
+                context.delete(location)
+                try context.save()
+
+            } catch {
+                print("ERORR! ERRRORR!!!!")
+            }*/
+
         }
-    }
+    }*/
 
 
 

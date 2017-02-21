@@ -8,6 +8,7 @@
 
 import UIKit
 import GoogleMaps
+import CoreData
 
 class ViewController: UIViewController, GMSMapViewDelegate {
     
@@ -20,12 +21,14 @@ class ViewController: UIViewController, GMSMapViewDelegate {
     @IBOutlet weak var controllerView: UIView!
     
     //NSUserDefaults for saved locations, we won't have much info so it should be okay
-    //var savedLocationsArray = [ParkingInfo]()
-    var savedLocationsArray = [String]()
+    var savedLocationsArray = [ParkingInfoSign]()
+    var savedLocationsArray2 = [String]()
     
     override var prefersStatusBarHidden: Bool {
         return true
     }
+    
+    //var managedContext: NSManagedObjectContext
     
 
     override func viewDidLoad() {

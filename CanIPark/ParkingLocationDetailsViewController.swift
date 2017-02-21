@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class ParkingInfoCell: UITableViewCell {
     @IBOutlet weak var timeLabel: UILabel!
@@ -53,18 +54,82 @@ class ParkingLocationDetailsViewController: UIViewController, UITableViewDelegat
         //parkingTrueFalseLabel.text = parkingInfoObject.
 
     }
-
+    
+    //attempt at core data
+    //var managedObjectContext: NSManagedObjectContext!
+    var managedContext: NSManagedObjectContext!
+    
+    func getContext() -> NSManagedObjectContext {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        return appDelegate.persistentContainer.viewContext
+    }
+    
     @IBAction func saveParkingLocationButton(_ sender: Any) {
     
-        var newArray = UserDefaults.standard.array(forKey: "savedLocations")!
-        let latitude = String(parkingSignInfoObject.latitude)
-        let longitude = String(parkingSignInfoObject.longitude)
-        let coordinates = latitude + "," + longitude
-        newArray.append(coordinates)
-        UserDefaults.standard.setValue(newArray, forKey: "savedLocations")
+        //var newArray = UserDefaults.standard.array(forKey: "savedLocations")!
+        
+        //newArray.append(parkingSignInfoObject)
+        //UserDefaults.standard.setValue(newArray, forKey: "savedLocations")
         //print(newArray)
         
+        //attempt at core data storage
+        
+        let context = getContext()
+        let entity = NSEntityDescription.entity(forEntityName: "Location", in: context)
+        
+        let locationObject = NSManagedObject(entity: entity!, insertInto: context)
+
+        
+        locationObject.setValue(parkingSignInfoObject.latitude, forKey: "latitude")
+        locationObject.setValue(parkingSignInfoObject.longitude, forKey: "longitude")
+        locationObject.setValue("sign description", forKey: "signDescription")
+        
+        //get user description, maybe put in its own function later
+        let alert = UIAlertController(title: "Description",
+                                      message: "Add a description",
+                                      preferredStyle: .alert)
+        
+        var userDescriptionInput = "[No Description]"
+        
+        //messy - find better way to do this later
+        let saveAction = UIAlertAction(title: "Save",
+                                       style: .default) {
+                                        [unowned self] action in
+                                        
+                                        guard let textField = alert.textFields?.first,
+                                            let nameToSave = textField.text else {
+                                                
+                                                return
+                                        }
+                                        userDescriptionInput = nameToSave
+                                        locationObject.setValue(userDescriptionInput, forKey: "userDescription")
+                                        
+                                        do {
+                                            try context.save()
+                                            print("saved!")
+                                        } catch {
+                                            print("did not save, you bum")
+                                        }
+        }
+        
+
+        
+        
+        let cancelAction = UIAlertAction(title: "Cancel",
+                                         style: .default)
+        
+        alert.addTextField()
+        
+        alert.addAction(saveAction)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true)
+        
+ 
+
+        
     }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

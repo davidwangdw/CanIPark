@@ -15,12 +15,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    lazy var managedObjectContext: NSManagedObjectContext = self.persistentContainer.viewContext
+
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
         let apiKey = ProcessInfo.processInfo.environment["GMAPS_KEY"]
         GMSServices.provideAPIKey(apiKey!)
+        
+        /*let tabBarController = window!.rootViewController as! UITabBarController
+        if let tabBarViewControllers = tabBarController.viewControllers {
+            
+            let savedLocationsViewController = tabBarViewControllers[1] as! SavedLocationsViewController
+            SavedLocationsViewController.managedObjectContext = managedObjectContext
+            
+            let viewController = window!.rootViewController as! ViewController
+            viewController.managedContext = managedObjectContext
+
+            
+        }
+        return true*/
 
         return true
     }

@@ -48,7 +48,7 @@ class ParkingInfo{
     }
 }
 
-class ParkingInfoSign{
+class ParkingInfoSign {
     
     //for the saved locations feature
     lazy var signNickname = String()

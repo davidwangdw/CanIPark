@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:CanIPark/Location+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:CanIPark/Location+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
       location = "group:CanIPark.xcodeproj">
    </FileRef>
    <FileRef
